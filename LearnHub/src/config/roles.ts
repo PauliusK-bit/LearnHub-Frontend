@@ -5,6 +5,6 @@ const ROLES = {
   LECTURER: "LECTURER",
 } as const;
 
-export type Roles = keyof typeof ROLES;
+export type Role = keyof typeof ROLES;
 
 export default ROLES;
