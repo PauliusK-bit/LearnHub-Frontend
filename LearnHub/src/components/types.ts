@@ -29,3 +29,14 @@ export interface Subject {
 export interface SubjectProps {
   data: Subject;
 }
+
+export interface Student {
+  name: string;
+  email: string;
+  password: string;
+  _id: string;
+}
+
+export interface StudentProps {
+  data: Student;
+}

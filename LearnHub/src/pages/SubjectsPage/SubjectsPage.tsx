@@ -1,11 +1,14 @@
 import SubjectsList from "../../components/SubjectsList";
+import { SubjectsPageContextProvider } from "./SubjectsContextProvider";
 
 const SubjectsPage = () => {
   return (
     <>
-      <div>
-        <SubjectsList />
-      </div>
+      <SubjectsPageContextProvider>
+        <div>
+          <SubjectsList />
+        </div>
+      </SubjectsPageContextProvider>
     </>
   );
 };

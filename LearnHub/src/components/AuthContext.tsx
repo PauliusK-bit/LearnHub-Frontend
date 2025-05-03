@@ -53,12 +53,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     setToken(token);
     const decoded = jwtDecode<DecodedToken>(token);
     setUser(decoded);
+    console.log("Prisijungta", token);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
+    console.log("Atsijungta");
   };
 
   const updateUser = (newUser: User) => {

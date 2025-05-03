@@ -1,16 +1,18 @@
 import { ChangeEvent, useState } from "react";
 import { useAuth } from "../../components/AuthContext";
 import "./LoginPage.css";
-import axios from "axios";
-import { API_URL } from "../../config/config";
+
 import { Input } from "@heroui/react";
+import api from "../../api";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const userEmailHandler = (event: ChangeEvent<HTMLInputElement>) =>
     setEmail(event.target.value);
@@ -22,12 +24,14 @@ const LoginPage = () => {
 
     try {
       const loginInfo = { email, password };
-      const { data } = await axios.post(`${API_URL}/users/login`, loginInfo);
+      const { data } = await api.post(`/users/login`, loginInfo);
 
       const { token } = data;
 
       if (token) {
         login(token);
+        toast.success("Logged in");
+        navigate("/profile");
       }
     } catch (error) {
       console.log("Failed to login", error);

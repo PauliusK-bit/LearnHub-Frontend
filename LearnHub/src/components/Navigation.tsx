@@ -12,9 +12,13 @@ import {
 } from "@heroui/react";
 
 import "./Navigation.css";
+import LogoutButton from "./LogoutButton";
+import { useAuth } from "./AuthContext";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const { user } = useAuth();
 
   const menuItems = [
     "Profile",
@@ -57,18 +61,27 @@ const Navigation = () => {
           </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">
-          {location.pathname !== "/login" && (
-            <NavbarItem className="hidden lg:flex">
-              <Link href="/login">Login</Link>
-            </NavbarItem>
-          )}
-
           {location.pathname !== "/register" && (
             <NavbarItem className="hidden lg:flex">
               <Button as={Link} color="primary" href="/register" variant="flat">
                 Register
               </Button>
             </NavbarItem>
+          )}
+
+          {!user ? (
+            <>
+              {" "}
+              {location.pathname !== "/login" && (
+                <NavbarItem className="hidden lg:flex">
+                  <Link href="/login">Login</Link>
+                </NavbarItem>
+              )}
+            </>
+          ) : (
+            <>
+              <LogoutButton />
+            </>
           )}
         </NavbarContent>
         <NavbarMenu>

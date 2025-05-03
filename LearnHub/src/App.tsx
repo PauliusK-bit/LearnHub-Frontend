@@ -7,6 +7,9 @@ import Navigation from "./components/Navigation";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { AuthProvider } from "./components/AuthContext";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import SubjectsPage from "./pages/SubjectsPage/SubjectsPage";
+import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
+import StudentsPage from "./pages/StudentsPage/StudentsPage";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="subjects" element={<SubjectsPage />} />
+            <Route path="categories" element={<CategoriesPage />} />
+            <Route path="students" element={<StudentsPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
