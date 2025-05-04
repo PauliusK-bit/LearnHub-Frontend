@@ -12,6 +12,7 @@ import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 import StudentsPage from "./pages/StudentsPage/StudentsPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import LecturersPage from "./pages/LecturersPage/LecturersPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -27,9 +28,9 @@ function App() {
             <Route path="subjects" element={<SubjectsPage />} />
             <Route path="categories" element={<CategoriesPage />} />
             <Route path="categories/:id" element={<CategoryPage />} />
-
             <Route path="students" element={<StudentsPage />} />
             <Route path="lecturers" element={<LecturersPage />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

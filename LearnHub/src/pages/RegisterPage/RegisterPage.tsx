@@ -1,9 +1,8 @@
 import { ChangeEvent, useState } from "react";
-import { API_URL } from "../../config/config";
-import axios from "axios";
 import { useNavigate } from "react-router";
 import "./RegisterPage.css";
 import { Input } from "@heroui/react";
+import api from "../../api";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +24,7 @@ const RegisterPage = () => {
     try {
       const userInfo = { username, email, password };
       console.log(username, email, password);
-      await axios.post(`${API_URL}/users/register`, userInfo);
+      await api.post(`/users/register`, userInfo);
       navigate("/login");
     } catch (error) {
       console.log("Failed to register user:", error);

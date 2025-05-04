@@ -46,9 +46,9 @@ const Navigation = () => {
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
+            <NavLink color="foreground" to={"/profile"}>
+              Profile
+            </NavLink>
           </NavbarItem>
           <NavbarItem isActive>
             <NavLink to={"/categories"}>Categories</NavLink>
