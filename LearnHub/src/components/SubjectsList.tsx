@@ -20,7 +20,7 @@ const SubjectsList = () => {
       <div>
         <ul>
           {subjects.map((subject) => (
-            <SubjectItem key={subject.id} data={subject} />
+            <SubjectItem key={subject._id} data={subject} />
           ))}
         </ul>
       </div>

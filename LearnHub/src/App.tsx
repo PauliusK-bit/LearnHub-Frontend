@@ -10,6 +10,8 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import SubjectsPage from "./pages/SubjectsPage/SubjectsPage";
 import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 import StudentsPage from "./pages/StudentsPage/StudentsPage";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
+import LecturersPage from "./pages/LecturersPage/LecturersPage";
 
 function App() {
   return (
@@ -24,7 +26,10 @@ function App() {
             <Route path="register" element={<RegisterPage />} />
             <Route path="subjects" element={<SubjectsPage />} />
             <Route path="categories" element={<CategoriesPage />} />
+            <Route path="categories/:id" element={<CategoryPage />} />
+
             <Route path="students" element={<StudentsPage />} />
+            <Route path="lecturers" element={<LecturersPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

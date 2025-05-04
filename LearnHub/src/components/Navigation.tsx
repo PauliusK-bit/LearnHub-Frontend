@@ -14,6 +14,7 @@ import {
 import "./Navigation.css";
 import LogoutButton from "./LogoutButton";
 import { useAuth } from "./AuthContext";
+import { NavLink } from "react-router";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -50,14 +51,12 @@ const Navigation = () => {
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
-            <Link aria-current="page" href="#">
-              Customers
-            </Link>
+            <NavLink to={"/categories"}>Categories</NavLink>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
+            <NavLink color="foreground" to={"/lecturers"}>
+              Lecturers
+            </NavLink>
           </NavbarItem>
         </NavbarContent>
         <NavbarContent justify="end">

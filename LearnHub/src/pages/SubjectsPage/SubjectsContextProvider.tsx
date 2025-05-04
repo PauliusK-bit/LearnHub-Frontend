@@ -70,14 +70,14 @@ export const SubjectsPageContextProvider: React.FC<{ children: ReactNode }> = ({
   const editSubject = async (subject: Subject) => {
     try {
       const { data } = await axios.put(
-        `${API_URL}/subjects/${subject.id}`,
+        `${API_URL}/subjects/${subject._id}`,
         subject
       );
       dispatch({ type: SubjectsActionTypes.EDIT_SUBJECT, payload: data });
     } catch {
       dispatch({
         type: SubjectsActionTypes.FAIL,
-        payload: "Failed to edit event",
+        payload: "Failed to edit subject",
       });
     }
   };

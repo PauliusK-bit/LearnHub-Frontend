@@ -44,7 +44,7 @@ export const SubjectsReducer = (
       return {
         ...state,
         subjects: state.subjects.filter(
-          (subject) => subject.id !== action.payload.toString()
+          (subject) => subject._id !== action.payload.toString()
         ),
       };
     case SubjectsActionTypes.ADD_SUBJECT:
@@ -55,8 +55,8 @@ export const SubjectsReducer = (
     case SubjectsActionTypes.EDIT_SUBJECT:
       return {
         ...state,
-        subjects: state.subjects.map((subjcet) =>
-          subjcet.id === action.payload.id ? action.payload : subjcet
+        subjects: state.subjects.map((subject) =>
+          subject._id === action.payload._id ? action.payload : subject
         ),
       };
     default:

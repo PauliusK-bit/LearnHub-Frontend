@@ -14,6 +14,7 @@ export interface DecodedToken extends User {
 export interface Category {
   name: string;
   description: string;
+  _id: string;
 }
 
 export interface CategoryProps {
@@ -23,7 +24,7 @@ export interface CategoryProps {
 export interface Subject {
   name: string;
   description: string;
-  id: string;
+  _id: string;
 }
 
 export interface SubjectProps {
@@ -39,4 +40,15 @@ export interface Student {
 
 export interface StudentProps {
   data: Student;
+}
+
+export interface Lecturer {
+  _id: string;
+  name: string;
+  surname: string;
+  email: string;
+}
+
+export interface LecturerProps {
+  data: Lecturer;
 }

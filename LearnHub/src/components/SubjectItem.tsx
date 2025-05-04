@@ -3,13 +3,13 @@ import { useSubjects } from "../pages/SubjectsPage/SubjectsContextProvider";
 import { SubjectProps } from "./types";
 
 const SubjectItem = ({ data }: SubjectProps) => {
-  const { name, description, id } = data;
+  const { name, description, _id } = data;
   const { deleteSubject } = useSubjects();
 
   const navigate = useNavigate();
 
   const handleEditClick = () => {
-    navigate(`/editSubject/${id}`);
+    navigate(`/editSubject/${_id}`);
   };
 
   return (
@@ -28,7 +28,7 @@ const SubjectItem = ({ data }: SubjectProps) => {
 
       <p>{description}</p>
       <button
-        onClick={() => deleteSubject(id)}
+        onClick={() => deleteSubject(_id)}
         style={{
           background: "red",
           color: "white",
