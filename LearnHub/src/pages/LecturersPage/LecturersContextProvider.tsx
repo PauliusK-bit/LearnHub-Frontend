@@ -73,6 +73,7 @@ export const LecturersPageContextProvider: React.FC<{
         `${API_URL}/lecturers/${lecturer._id}`,
         lecturer
       );
+
       dispatch({ type: LecturersActionTypes.EDIT_LECTURER, payload: data });
     } catch {
       dispatch({

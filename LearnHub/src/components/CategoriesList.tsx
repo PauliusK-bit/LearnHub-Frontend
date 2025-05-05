@@ -12,7 +12,7 @@ const CategoriesList = () => {
         const { data } = await api.get("/categories");
         setCategories(data);
       } catch (err) {
-        console.log("Failed to fetching assignments", err);
+        console.log("Failed to fetching categories", err);
       }
     };
     fetchCategoriesData();

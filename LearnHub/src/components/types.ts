@@ -24,7 +24,7 @@ export interface CategoryProps {
 export interface Subject {
   name: string;
   description: string;
-  _id: string;
+  _id?: string;
 }
 
 export interface SubjectProps {
@@ -47,8 +47,20 @@ export interface Lecturer {
   name: string;
   surname: string;
   email: string;
+  password: string;
 }
 
 export interface LecturerProps {
   data: Lecturer;
+}
+
+export interface Activity {
+  _id: string;
+  title: string;
+  description: string;
+  eventDate: string;
+}
+
+export interface ActivityProps {
+  data: Activity;
 }

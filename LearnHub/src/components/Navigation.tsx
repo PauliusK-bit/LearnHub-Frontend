@@ -46,8 +46,8 @@ const Navigation = () => {
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem>
-            <NavLink color="foreground" to={"/profile"}>
-              Profile
+            <NavLink color="foreground" to={"/"}>
+              Home Page
             </NavLink>
           </NavbarItem>
           <NavbarItem isActive>
@@ -56,6 +56,16 @@ const Navigation = () => {
           <NavbarItem>
             <NavLink color="foreground" to={"/lecturers"}>
               Lecturers
+            </NavLink>
+          </NavbarItem>
+          <NavbarItem>
+            <NavLink color="foreground" to={"/admin-dashboard"}>
+              Admin Dashboard
+            </NavLink>
+          </NavbarItem>
+          <NavbarItem>
+            <NavLink color="foreground" to={"/activities"}>
+              Activities
             </NavLink>
           </NavbarItem>
         </NavbarContent>
