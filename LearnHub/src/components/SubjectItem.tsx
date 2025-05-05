@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useSubjects } from "../pages/SubjectsPage/SubjectsContextProvider";
 import { SubjectProps } from "./types";
 
@@ -23,12 +23,12 @@ const SubjectItem = ({ data }: SubjectProps) => {
       }}
     >
       <p>
-        <strong>Subject name:</strong> {name}
+        <Link to={`/subjects/${_id}`}> {name}</Link>
       </p>
 
       <p>{description}</p>
       <button
-        onClick={() => deleteSubject(_id)}
+        onClick={() => _id && deleteSubject(_id)}
         style={{
           background: "red",
           color: "white",

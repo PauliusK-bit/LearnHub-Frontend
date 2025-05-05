@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { LecturerProps } from "./types";
+import { Link } from "react-router";
 
 const StyledWrapper = styled.div`
   .profile-card {
@@ -248,7 +249,9 @@ const LecturerItem = ({ data }: LecturerProps) => {
               </svg>
             </button>
           </div>
-          <button className="cta-button">Message</button>
+          <Link to={`/lecturers/${_id}`} className="cta-button">
+            Lecturer students
+          </Link>
           <div className="stats">
             <div className="stat-item">
               <div className="stat-value">{followers}k</div>

@@ -20,6 +20,8 @@ import AdminSubjectsControlPage from "./pages/AdminSubjectsControlPage/AdminSubj
 import AdminStudentsControlPage from "./pages/AdminStudentsControlPage/AdminStudentsControlPage";
 import ActivitiesPage from "./pages/ActivitiesPage/ActivitiesPage";
 import ActivityPage from "./pages/ActivityPage/ActivityPage";
+import LecturerPage from "./pages/LecturerPage/LecturerPage";
+import VideoPage from "./pages/VideoPage/VideoPage";
 
 function App() {
   return (
@@ -33,10 +35,12 @@ function App() {
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="subjects" element={<SubjectsPage />} />
+            <Route path="subjects/:id" element={<VideoPage />} />
             <Route path="categories" element={<CategoriesPage />} />
             <Route path="categories/:id" element={<CategoryPage />} />
             <Route path="students" element={<StudentsPage />} />
             <Route path="lecturers" element={<LecturersPage />} />
+            <Route path="lecturers/:id" element={<LecturerPage />} />
             <Route path="activities" element={<ActivitiesPage />} />
             <Route path="activities/:id" element={<ActivityPage />} />
             <Route path="profile" element={<ProfilePage />} />

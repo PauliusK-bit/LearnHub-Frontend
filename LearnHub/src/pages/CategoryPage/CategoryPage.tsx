@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import api from "../../api";
 import { Subject } from "../../components/types";
 
@@ -12,8 +12,8 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchCategoriesSubjects = async () => {
       try {
-        const subjectsData = await api.get(`/categories/${id}/subjects`);
-        setSubjects(subjectsData.data);
+        const { data } = await api.get(`/categories/${id}/subjects`);
+        setSubjects(data);
       } catch (error) {
         console.log("Something went wrong", error);
       } finally {
@@ -37,7 +37,7 @@ const CategoryPage = () => {
         <ul>
           {subjects.map((subject) => (
             <li key={subject._id}>
-              <h3>{subject.name}</h3>
+              <Link to={`/subjects/${subject._id}`}> {subject.name}</Link>
               <p>{subject.description}</p>
             </li>
           ))}

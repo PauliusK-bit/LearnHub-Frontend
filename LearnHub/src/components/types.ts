@@ -64,3 +64,10 @@ export interface Activity {
 export interface ActivityProps {
   data: Activity;
 }
+
+export interface Video {
+  title: string;
+  level: string;
+  videoUrl: string;
+  _id: string;
+}
