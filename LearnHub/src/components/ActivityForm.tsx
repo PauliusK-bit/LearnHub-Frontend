@@ -58,7 +58,7 @@ const ActivityForm: React.FC = () => {
           eventDate,
         };
 
-        const { data } = await axios.put(
+        await axios.put(
           `${API_URL}/activities/${selectedActivityId}`,
           updatedActivity
         );

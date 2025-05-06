@@ -56,7 +56,7 @@ const StudentForm: React.FC = () => {
           password,
         };
 
-        const { data } = await axios.put(
+        await axios.put(
           `${API_URL}/students/${selectedStudentId}`,
           updatedStudent
         );
