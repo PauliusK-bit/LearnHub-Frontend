@@ -22,6 +22,7 @@ import ActivitiesPage from "./pages/ActivitiesPage/ActivitiesPage";
 import ActivityPage from "./pages/ActivityPage/ActivityPage";
 import LecturerPage from "./pages/LecturerPage/LecturerPage";
 import VideoPage from "./pages/VideoPage/VideoPage";
+import VideoForm from "./components/VideoForm";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
             <Route path="activities" element={<ActivitiesPage />} />
             <Route path="activities/:id" element={<ActivityPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="videos" element={<VideoForm />} />
+
             <Route path="admin-dashboard" element={<AdminPage />} />
             <Route
               path="categories-control"

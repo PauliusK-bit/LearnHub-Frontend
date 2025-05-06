@@ -28,12 +28,14 @@ function getEmbedUrl(url: string) {
 const VideoPage = () => {
   const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState<Video[]>([]);
+  const [level, setLevel] = useState("all");
 
   const { id } = useParams();
 
   useEffect(() => {
     const fetchSubjectVideos = async () => {
       try {
+        setLoading(true);
         const { data } = await api.get(`/subjects/${id}/videos`);
         setVideos(data);
       } catch (error) {
@@ -49,15 +51,26 @@ const VideoPage = () => {
     return <div>Loading...</div>;
   }
 
+  const filteredVideos =
+    level === "all" ? videos : videos.filter((video) => video.level === level);
+
   return (
     <>
+      <h2>Pasirink lygį:</h2>
+      <select onChange={(e) => setLevel(e.target.value)} value={level}>
+        <option value="all">Visi</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
       <div>Subject Id {id}</div>
-      <h2>Subjects:</h2>
-      {videos.length === 0 ? (
-        <p>No videos found.</p>
+
+      <h2>Videos:</h2>
+      {filteredVideos.length === 0 ? (
+        <p>Videos not found.</p>
       ) : (
         <ul>
-          {videos.map((video) => (
+          {filteredVideos.map((video) => (
             <li key={video._id}>
               <p>{video.title}</p>
               {video.videoUrl?.includes("youtube.com") ||
