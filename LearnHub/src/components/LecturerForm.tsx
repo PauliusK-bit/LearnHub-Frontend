@@ -72,11 +72,6 @@ const LecturerForm = () => {
     ) {
       await deleteLecturer(selectedLecturerId);
 
-      setName("");
-      setSurname("");
-      setEmail("");
-      setSelectedLecturerId(null);
-
       fetchLecturers();
     }
   };

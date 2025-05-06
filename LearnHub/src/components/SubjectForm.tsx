@@ -62,11 +62,6 @@ const SubjectForm = () => {
     ) {
       await deleteSubject(selectedSubjectId);
 
-      setName("");
-      setDescription("");
-
-      setSelectedSubjectId(null);
-
       fetchSubjects();
     }
   };

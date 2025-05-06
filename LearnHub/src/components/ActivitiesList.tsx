@@ -10,7 +10,7 @@ const ActivitiesList = () => {
     const fetchActivitiesData = async () => {
       try {
         const { data } = await api.get("/activities");
-        console.log(data);
+
         setActivities(data);
       } catch (err) {
         console.log("Failed to fetching activities", err);

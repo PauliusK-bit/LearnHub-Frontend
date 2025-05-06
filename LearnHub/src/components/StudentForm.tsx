@@ -67,6 +67,7 @@ const StudentForm: React.FC = () => {
         );
       } else {
         const newStudent: Student = {
+          _id: selectedStudentId ?? "",
           name,
           email,
           password,
@@ -89,11 +90,6 @@ const StudentForm: React.FC = () => {
   const deleteHandler = async (studentId: string) => {
     try {
       await axios.delete(`${API_URL}/students/${studentId}`);
-
-      setSelectedStudentId(null);
-      setName("");
-      setEmail("");
-      setPassword("");
 
       setStudents((prevStudents) =>
         prevStudents.filter((student) => student._id !== studentId)

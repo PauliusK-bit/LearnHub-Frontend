@@ -69,6 +69,7 @@ const ActivityForm: React.FC = () => {
         );
       } else {
         const newActivity: Activity = {
+          _id: selectedActivityId ?? "",
           title,
           description,
           eventDate,
@@ -91,11 +92,6 @@ const ActivityForm: React.FC = () => {
   const deleteHandler = async (activityId: string) => {
     try {
       await axios.delete(`${API_URL}/activities/${activityId}`);
-
-      setSelectedActivityId(null);
-      setTitle("");
-      setDescription("");
-      setEventData("");
 
       setActivities((prevActivites) =>
         prevActivites.filter((activity) => activity._id !== activityId)
