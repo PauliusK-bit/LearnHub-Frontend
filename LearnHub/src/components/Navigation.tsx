@@ -36,22 +36,42 @@ const Navigation = () => {
                   <Link to={"/admin-dashboard"}>Admin Dashboard</Link>
                 </li>
               )}
+              {user && user.role === ROLES.LECTURER && (
+                <ul>
+                  <li>
+                    <Link to={"/students-control"}>Manage Students</Link>
+                  </li>
+                  <li>
+                    <Link to={"/subjects-control"}>Manage Subjects</Link>
+                  </li>
+                  <li>
+                    <Link to={"/videos"}>Add Video Lesson</Link>
+                  </li>
+                  <li>
+                    <Link to={"/students"}>Students</Link>
+                  </li>
+                  <li>
+                    <Link to={"/lecturers"}>Lecturers</Link>
+                  </li>
+                </ul>
+              )}
+              {user && user.role === ROLES.STUDENT && (
+                <ul>
+                  <li>
+                    <Link to={"/subjects/:id"}></Link>
+                  </li>
+                  <li>
+                    <Link to={"/subjects"}>Subjects</Link>
+                  </li>
+                </ul>
+              )}
               <li>
                 <Link to={"/profile"}>Profile</Link>
               </li>
               <li>
                 <Link to={"/"}>Home Page</Link>
               </li>
-              <li>
-                <Link to={"/students"}>Students</Link>
-              </li>
-              <li>
-                <Link to={"/lecturers"}>Lecturers</Link>
-              </li>
 
-              <li>
-                <Link to={"/subjects"}>Subjects</Link>
-              </li>
               <li>
                 <LogoutButton />
               </li>

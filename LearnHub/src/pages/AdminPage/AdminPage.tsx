@@ -1,6 +1,12 @@
 import { Link } from "react-router";
+import { useAuth } from "../../components/AuthContext";
 
 const AdminPage: React.FC = () => {
+  const { user } = useAuth();
+
+  if (!user || user.role !== "ADMIN") {
+    return <div>This page can see only ADMIN</div>;
+  }
   return (
     <>
       <div className="admin-panel">
