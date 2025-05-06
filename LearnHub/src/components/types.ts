@@ -71,3 +71,8 @@ export interface Video {
   videoUrl: string;
   _id: string;
 }
+
+export interface Group {
+  name: string;
+  _id: string;
+}

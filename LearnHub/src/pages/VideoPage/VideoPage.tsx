@@ -16,12 +16,8 @@ function getEmbedUrl(url: string) {
     if (videoId) {
       return `https://www.youtube.com/embed/${videoId}`;
     }
-
-    return undefined;
   } catch (error) {
     console.error("Error creating embed URL:", error);
-
-    return undefined;
   }
 }
 

@@ -28,7 +28,7 @@ const AdminPage: React.FC = () => {
             </Link>
           </div>
           <div className="admin-button-wrapper">
-            <Link to="/admin/categories" className="admin-button">
+            <Link to="/events-control" className="admin-button">
               Manage Events
             </Link>
           </div>

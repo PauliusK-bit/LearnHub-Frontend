@@ -252,6 +252,9 @@ const LecturerItem = ({ data }: LecturerProps) => {
           <Link to={`/lecturers/${_id}`} className="cta-button">
             Lecturer students
           </Link>
+          <Link to={`/lecturers/${_id}`} className="cta-button">
+            Lecturer groups
+          </Link>
           <div className="stats">
             <div className="stat-item">
               <div className="stat-value">{followers}k</div>
