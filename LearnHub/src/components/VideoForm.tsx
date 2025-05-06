@@ -2,12 +2,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_URL } from "../config/config";
 
+import { useAuth } from "./AuthContext";
+
 const VideoForm: React.FC = () => {
   const [title, setTitle] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [level, setLevel] = useState("Beginner");
   const [subjectId, setSubjectId] = useState("");
   const [subjects, setSubjects] = useState<{ _id: string; name: string }[]>([]);
+
+  const { user } = useAuth();
+
+  const allowedRoles = ["LECTURER", "ADMIN"];
 
   useEffect(() => {
     const fetchSubjects = async () => {
@@ -21,6 +27,10 @@ const VideoForm: React.FC = () => {
 
     fetchSubjects();
   }, []);
+
+  if (!user || !allowedRoles.includes(user.role)) {
+    return <p>This page can see only Lecturer and Admin</p>;
+  }
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();

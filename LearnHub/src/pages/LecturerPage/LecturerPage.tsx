@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Group, Student } from "../../components/types";
 import { Link, useParams } from "react-router";
 import api from "../../api";
+import { useAuth } from "../../components/AuthContext";
 
 const LecturerPage = () => {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,10 @@ const LecturerPage = () => {
   const [groups, setGroups] = useState<Group[]>([]);
 
   const { id } = useParams();
+
+  const { user } = useAuth();
+
+  const allowedRoles = ["ADMIN"];
 
   useEffect(() => {
     const fetchLecturersStudents = async () => {
@@ -28,6 +33,10 @@ const LecturerPage = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!user || !allowedRoles.includes(user.role)) {
+    return <p>This page can see only Admin</p>;
   }
 
   return (
