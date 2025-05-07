@@ -69,7 +69,6 @@ const ActivityForm: React.FC = () => {
         );
       } else {
         const newActivity: Activity = {
-          _id: selectedActivityId ?? "",
           title,
           description,
           eventDate,
