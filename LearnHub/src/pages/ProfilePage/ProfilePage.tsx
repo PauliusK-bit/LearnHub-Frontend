@@ -32,7 +32,9 @@ const ProfilePage = () => {
       }
     };
 
-    if (user?.role === "ADMIN") {
+    const allowedRoles = ["ADMIN", "LECTURER", "USER", "STUDENT"];
+
+    if (user && allowedRoles.includes(user.role)) {
       fetchProfile();
     } else {
       setError("Only administrator can see this profile");

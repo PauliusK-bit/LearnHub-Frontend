@@ -3,7 +3,6 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 import HomePage from "./pages/HomePage/HomePage";
 import Navigation from "./components/Navigation";
-
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { AuthProvider } from "./components/AuthContext";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
