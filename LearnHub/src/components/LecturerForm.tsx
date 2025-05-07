@@ -44,8 +44,7 @@ const LecturerForm = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const newLecturer: Lecturer = {
-      _id: selectedLecturerId ?? "",
+    let newLecturerData: Lecturer = {
       name,
       surname,
       email,
@@ -53,9 +52,13 @@ const LecturerForm = () => {
     };
 
     if (selectedLecturerId) {
-      await editLecturer(newLecturer);
+      newLecturerData = {
+        ...newLecturerData,
+        _id: selectedLecturerId,
+      };
+      await editLecturer(newLecturerData);
     } else {
-      await addLecturer(newLecturer);
+      await addLecturer(newLecturerData);
     }
 
     setName("");
@@ -65,12 +68,9 @@ const LecturerForm = () => {
     setSelectedLecturerId(null);
   };
 
-  const handleDelete = async () => {
-    if (
-      selectedLecturerId &&
-      window.confirm("Ar tikrai norite ištrinti šį dėstytoją?")
-    ) {
-      await deleteLecturer(selectedLecturerId);
+  const handleDelete = async (_id: string) => {
+    if (window.confirm("Ar tikrai norite ištrinti šį dėstytoją?")) {
+      await deleteLecturer(_id);
 
       fetchLecturers();
     }
@@ -117,11 +117,6 @@ const LecturerForm = () => {
       <button type="submit">
         {selectedLecturerId ? "Atnaujinti" : "Pridėti"}
       </button>
-      {selectedLecturerId && (
-        <button type="button" onClick={handleDelete}>
-          Ištrinti
-        </button>
-      )}
 
       <div>
         <h3>Lecturers:</h3>
@@ -133,6 +128,9 @@ const LecturerForm = () => {
                 onClick={() => setSelectedLecturerId(lecturer._id)}
               >
                 {lecturer.name} - {lecturer.surname}
+              </button>
+              <button type="button" onClick={() => handleDelete(lecturer._id)}>
+                Ištrinti
               </button>
             </li>
           ))}

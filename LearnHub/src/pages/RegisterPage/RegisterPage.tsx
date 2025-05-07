@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router";
 import "./RegisterPage.css";
-import { Input } from "@heroui/react";
+
 import api from "../../api";
 
 const RegisterPage = () => {
@@ -36,51 +36,33 @@ const RegisterPage = () => {
       <h1>Register</h1>
       <form onSubmit={registerHandler}>
         <div className="form-control">
-          <div className="w-full flex flex-col gap-4">
-            <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-              <Input
-                label="Username"
-                placeholder="Enter your username"
-                type="username"
-                variant={"underlined"}
-                id="username"
-                value={username}
-                onChange={userNameHandler}
-              />
-            </div>
-          </div>
+          <input
+            placeholder="Enter your username"
+            type="username"
+            id="username"
+            value={username}
+            onChange={userNameHandler}
+          />
         </div>
 
         <div className="form-control">
-          <div className="w-full flex flex-col gap-4">
-            <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-              <Input
-                label="Email"
-                placeholder="Enter your email"
-                type="email"
-                variant={"underlined"}
-                id="email"
-                value={email}
-                onChange={userEmailHandler}
-              />
-            </div>
-          </div>
+          <input
+            placeholder="Enter your email"
+            type="email"
+            id="email"
+            value={email}
+            onChange={userEmailHandler}
+          />
         </div>
 
         <div className="form-control">
-          <div className="w-full flex flex-col gap-4">
-            <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-              <Input
-                label="Password"
-                placeholder="Enter your password"
-                type="password"
-                variant={"underlined"}
-                id="password"
-                value={password}
-                onChange={userPasswordHandler}
-              />
-            </div>
-          </div>
+          <input
+            placeholder="Enter your password"
+            type="password"
+            id="password"
+            value={password}
+            onChange={userPasswordHandler}
+          />
         </div>
 
         <button data-label="Register" className="rainbow-hover" type="submit">

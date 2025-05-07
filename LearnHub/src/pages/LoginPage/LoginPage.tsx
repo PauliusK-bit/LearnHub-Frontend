@@ -1,8 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { useAuth } from "../../components/AuthContext";
 import "./LoginPage.css";
-
-import { Input } from "@heroui/react";
 import api from "../../api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
@@ -43,20 +41,17 @@ const LoginPage = () => {
       <h1>Login</h1>
       <form onSubmit={loginHandler}>
         <div className="form-control">
-          <Input
+          <input
             className="max-w-xs"
-            label="Email"
             type="email"
             id="email"
-            variant="bordered"
             value={email}
             onChange={userEmailHandler}
           />
         </div>
         <div className="form-control">
-          <Input
+          <input
             className="max-w-xs"
-            label="Password"
             type="password"
             name="password"
             id="password"

@@ -67,7 +67,6 @@ const StudentForm: React.FC = () => {
         );
       } else {
         const newStudent: Student = {
-          _id: selectedStudentId ?? "",
           name,
           email,
           password,

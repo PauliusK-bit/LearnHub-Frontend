@@ -55,12 +55,9 @@ const SubjectForm = () => {
     setSelectedSubjectId(null);
   };
 
-  const handleDelete = async () => {
-    if (
-      selectedSubjectId &&
-      window.confirm("Ar tikrai norite ištrinti šį dėstytoją?")
-    ) {
-      await deleteSubject(selectedSubjectId);
+  const handleDelete = async (_id: string) => {
+    if (window.confirm("Ar tikrai norite ištrinti šį dėstytoją?")) {
+      await deleteSubject(_id);
 
       fetchSubjects();
     }
@@ -89,11 +86,6 @@ const SubjectForm = () => {
       <button type="submit">
         {selectedSubjectId ? "Atnaujinti" : "Pridėti"}
       </button>
-      {selectedSubjectId && (
-        <button type="button" onClick={handleDelete}>
-          Ištrinti
-        </button>
-      )}
 
       <div>
         <h3>Subjects:</h3>
@@ -105,6 +97,12 @@ const SubjectForm = () => {
                 onClick={() => setSelectedSubjectId(subject._id ?? null)}
               >
                 {subject.name}
+              </button>
+              <button
+                type="button"
+                onClick={() => handleDelete(subject._id ?? "")}
+              >
+                Ištrinti
               </button>
             </li>
           ))}
