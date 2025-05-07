@@ -17,6 +17,7 @@ const SubjectsList = () => {
 
   return (
     <>
+      <p>Subjects</p>
       <div>
         <ul>
           {subjects.map((subject) => (

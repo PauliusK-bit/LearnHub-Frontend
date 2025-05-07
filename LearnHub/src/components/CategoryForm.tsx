@@ -2,6 +2,35 @@ import { useEffect, useState } from "react";
 import { Category } from "./types";
 import axios from "axios";
 import { API_URL } from "../config/config";
+import styled from "styled-components";
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+`;
+
+const EditButton = styled(Button)`
+  background-color: #4caf50;
+  color: white;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;
+
+const DeleteButton = styled(Button)`
+  background-color: #f44336;
+  color: white;
+
+  &:hover {
+    background-color: #da190b;
+  }
+`;
 
 const CategoryForm = () => {
   const [name, setName] = useState("");
@@ -124,22 +153,37 @@ const CategoryForm = () => {
         </button>
       </form>
 
-      <ul>
-        {categories.map((category) => (
-          <li key={category._id}>
-            <span>{category.name}</span>
-            <button
-              type="button"
-              onClick={() => setSelectedCategoryId(category._id)}
-            >
-              Edit
-            </button>
-            <button type="button" onClick={() => deleteHandler(category._id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="overflow-x-auto">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categories.map((category) => (
+              <tr key={category._id} className="hover:bg-base-300">
+                <td>{category.name}</td>
+                <td>
+                  <EditButton
+                    type="button"
+                    onClick={() => setSelectedCategoryId(category._id)}
+                  >
+                    Edit
+                  </EditButton>
+                  <DeleteButton
+                    type="button"
+                    onClick={() => deleteHandler(category._id)}
+                  >
+                    Delete
+                  </DeleteButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

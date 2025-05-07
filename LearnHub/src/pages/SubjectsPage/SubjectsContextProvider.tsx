@@ -5,8 +5,8 @@ import {
   SubjectsInitialState,
   SubjectsReducer,
 } from "./subjectsReducer";
-import axios from "axios";
-import { API_URL } from "../../config/config";
+
+import api from "../../api";
 
 interface SubjectsContextType {
   subjects: Subject[];
@@ -32,7 +32,7 @@ export const SubjectsPageContextProvider: React.FC<{ children: ReactNode }> = ({
   const fetchSubjects = async () => {
     try {
       dispatch({ type: SubjectsActionTypes.FETCH });
-      const { data } = await axios(`${API_URL}/subjects`);
+      const { data } = await api.get(`/subjects`);
       dispatch({ type: SubjectsActionTypes.SUCCESS, payload: data });
     } catch {
       dispatch({
@@ -45,7 +45,7 @@ export const SubjectsPageContextProvider: React.FC<{ children: ReactNode }> = ({
   const addSubject = async (newSubject: Subject) => {
     try {
       dispatch({ type: SubjectsActionTypes.FETCH });
-      const { data } = await axios.post(`${API_URL}/subjects`, newSubject);
+      const { data } = await api.post(`/subjects`, newSubject);
       dispatch({ type: SubjectsActionTypes.ADD_SUBJECT, payload: data });
     } catch {
       dispatch({
@@ -57,7 +57,7 @@ export const SubjectsPageContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const deleteSubject = async (id: string) => {
     try {
-      await axios.delete(`${API_URL}/subjects/${id}`);
+      await api.delete(`/subjects/${id}`);
       dispatch({ type: SubjectsActionTypes.DELETE, payload: id });
     } catch {
       dispatch({
@@ -69,10 +69,7 @@ export const SubjectsPageContextProvider: React.FC<{ children: ReactNode }> = ({
 
   const editSubject = async (subject: Subject) => {
     try {
-      const { data } = await axios.put(
-        `${API_URL}/subjects/${subject._id}`,
-        subject
-      );
+      const { data } = await api.put(`/subjects/${subject._id}`, subject);
       dispatch({ type: SubjectsActionTypes.EDIT_SUBJECT, payload: data });
     } catch {
       dispatch({

@@ -2,6 +2,38 @@ import { useEffect, useState } from "react";
 import { Student } from "./types";
 import axios from "axios";
 import { API_URL } from "../config/config";
+import styled from "styled-components";
+
+const Delete = styled.button`
+  background-color: #8eb1c7;
+  border-radius: 10px;
+  padding: 8px 16px;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: red;
+    cursor: pointer;
+  }
+`;
+
+const Edit = styled.button`
+  background-color: #c1bfb5;
+  border-radius: 10px;
+  padding: 8px 16px;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: green;
+    cursor: pointer;
+  }
+`;
+
+const StyledName = styled.span`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #009dff;
+  padding: 4px 8px;
+`;
 
 const StudentForm: React.FC = () => {
   const [name, setName] = useState("");
@@ -153,16 +185,16 @@ const StudentForm: React.FC = () => {
       <ul>
         {students.map((student) => (
           <li key={student._id}>
-            <span>{student.name}</span>
-            <button
+            <StyledName>{student.name}</StyledName>
+            <Edit
               type="button"
               onClick={() => setSelectedStudentId(student._id)}
             >
               Edit
-            </button>
-            <button type="button" onClick={() => deleteHandler(student._id)}>
+            </Edit>
+            <Delete type="button" onClick={() => deleteHandler(student._id)}>
               Delete
-            </button>
+            </Delete>
           </li>
         ))}
       </ul>

@@ -1,57 +1,39 @@
-import { Link, useNavigate } from "react-router";
-import { useSubjects } from "../pages/SubjectsPage/SubjectsContextProvider";
+import { Link } from "react-router";
 import { SubjectProps } from "./types";
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #4f46e5;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #e0e7ff;
+    color: #3730a3;
+  }
+`;
 
 const SubjectItem = ({ data }: SubjectProps) => {
   const { name, description, _id } = data;
-  const { deleteSubject } = useSubjects();
-
-  const navigate = useNavigate();
-
-  const handleEditClick = () => {
-    navigate(`/editSubject/${_id}`);
-  };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px",
-        borderBottom: "1px solid #ddd",
-      }}
-    >
-      <p>
-        <Link to={`/subjects/${_id}`}> {name}</Link>
-      </p>
-
-      <p>{description}</p>
-      <button
-        onClick={() => _id && deleteSubject(_id)}
-        style={{
-          background: "red",
-          color: "white",
-          border: "none",
-          padding: "5px 10px",
-          cursor: "pointer",
-        }}
-      >
-        Delete
-      </button>
-      <button
-        onClick={handleEditClick}
-        style={{
-          background: "blue",
-          color: "white",
-          border: "none",
-          padding: "5px 10px",
-          cursor: "pointer",
-        }}
-      >
-        Edit
-      </button>
-    </div>
+    <>
+      <ul className="list bg-base-100 rounded-box shadow-md">
+        <li className="list-row">
+          <div>
+            <StyledLink className="styled-link" to={`/subjects/${_id}`}>
+              {name}
+            </StyledLink>
+            <div className="text-xs uppercase font-semibold opacity-60">
+              {description}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </>
   );
 };
 

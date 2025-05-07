@@ -2,6 +2,55 @@ import { useEffect, useState } from "react";
 import { Activity } from "./types";
 import axios from "axios";
 import { API_URL } from "../config/config";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+`;
+
+const Card = styled.div`
+  background-color: #1f2937;
+  color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const Title = styled.span`
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+`;
+
+const ButtonGroup = styled.div`
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+`;
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+`;
 
 const ActivityForm: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -152,22 +201,29 @@ const ActivityForm: React.FC = () => {
         </button>
       </form>
 
-      <ul>
+      <Container>
         {activities.map((activity) => (
-          <li key={activity._id}>
-            <span>{activity.title}</span>
-            <button
-              type="button"
-              onClick={() => setSelectedActivityId(activity._id)}
-            >
-              Edit
-            </button>
-            <button type="button" onClick={() => deleteHandler(activity._id)}>
-              Delete
-            </button>
-          </li>
+          <Card key={activity._id}>
+            <Title>{activity.title}</Title>
+            <ButtonGroup>
+              <Button
+                className="btn btn-outline btn-info"
+                type="button"
+                onClick={() => setSelectedActivityId(activity._id)}
+              >
+                Edit
+              </Button>
+              <Button
+                className="btn btn-outline btn-error"
+                type="button"
+                onClick={() => deleteHandler(activity._id)}
+              >
+                Delete
+              </Button>
+            </ButtonGroup>
+          </Card>
         ))}
-      </ul>
+      </Container>
     </>
   );
 };

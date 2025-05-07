@@ -2,6 +2,82 @@ import { useEffect, useState } from "react";
 import { Video } from "../../components/types";
 import { useParams } from "react-router";
 import api from "../../api";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #294c60;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+`;
+
+const Heading = styled.h2`
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 12px;
+`;
+
+const SelectStyled = styled.select`
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #294c60;
+  background-color: #001b2e;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+  }
+`;
+
+const VideoList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const VideoItem = styled.li`
+  background-color: #193221;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
+`;
+
+const VideoTitle = styled.p`
+  font-size: 20px;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 12px;
+  text-align: center;
+`;
+
+const MediaContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  iframe,
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+`;
 
 function getEmbedUrl(url: string) {
   try {
@@ -52,40 +128,45 @@ const VideoPage = () => {
 
   return (
     <>
-      <h2>Pasirink lygį:</h2>
-      <select onChange={(e) => setLevel(e.target.value)} value={level}>
-        <option value="all">Visi</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Intermediate">Intermediate</option>
-        <option value="Advanced">Advanced</option>
-      </select>
-      <div>Subject Id {id}</div>
+      <Wrapper>
+        <Heading>Choose level:</Heading>
+        <SelectStyled onChange={(e) => setLevel(e.target.value)} value={level}>
+          <option value="all">Visi</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </SelectStyled>
 
-      <h2>Videos:</h2>
-      {filteredVideos.length === 0 ? (
-        <p>Videos not found.</p>
-      ) : (
-        <ul>
-          {filteredVideos.map((video) => (
-            <li key={video._id}>
-              <p>{video.title}</p>
-              {video.videoUrl?.includes("youtube.com") ||
-              video.videoUrl?.includes("youtu.be") ? (
-                <iframe
-                  width="560"
-                  height="315"
-                  src={getEmbedUrl(video.videoUrl)}
-                  frameBorder="0"
-                  allowFullScreen
-                  title={video.title}
-                ></iframe>
-              ) : (
-                <img src={video.videoUrl} alt="" />
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+        <div>Subject Id: {id}</div>
+
+        <Heading>Videos:</Heading>
+        {filteredVideos.length === 0 ? (
+          <p style={{ textAlign: "center", fontSize: "18px", color: "#777" }}>
+            Videos not found.
+          </p>
+        ) : (
+          <VideoList>
+            {filteredVideos.map((video) => (
+              <VideoItem key={video._id}>
+                <VideoTitle>{video.title}</VideoTitle>
+                <MediaContainer>
+                  {video.videoUrl?.includes("youtube.com") ||
+                  video.videoUrl?.includes("youtu.be") ? (
+                    <iframe
+                      src={getEmbedUrl(video.videoUrl)}
+                      frameBorder="0"
+                      allowFullScreen
+                      title={video.title}
+                    ></iframe>
+                  ) : (
+                    <img src={video.videoUrl} alt={video.title} />
+                  )}
+                </MediaContainer>
+              </VideoItem>
+            ))}
+          </VideoList>
+        )}
+      </Wrapper>
     </>
   );
 };

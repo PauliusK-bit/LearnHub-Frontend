@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSubjects } from "../pages/SubjectsPage/SubjectsContextProvider";
 import { Subject } from "./types";
+import styled from "styled-components";
+
+const Card = styled.div`
+  border: 2px solid white;
+  margin-top: 20px;
+  margin-left: 20px;
+`;
 
 const SubjectForm = () => {
   const { fetchSubjects, addSubject, deleteSubject, editSubject, subjects } =
@@ -66,8 +73,9 @@ const SubjectForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-control">
-        <label htmlFor="name">Name:</label>
         <input
+          placeholder="Name"
+          className="input"
           type="text"
           id="name"
           value={name}
@@ -75,38 +83,48 @@ const SubjectForm = () => {
         />
       </div>
       <div className="form-control">
-        <label htmlFor="title">Description:</label>
         <input
+          placeholder="Description"
+          className="input"
           type="text"
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <button type="submit">
+      <button className="btn btn-dash btn-accent" type="submit">
         {selectedSubjectId ? "Atnaujinti" : "Pridėti"}
       </button>
-
-      <div>
-        <h3>Subjects:</h3>
-        <ul>
-          {subjects.map((subject) => (
-            <li key={subject._id}>
-              <button
-                type="button"
-                onClick={() => setSelectedSubjectId(subject._id ?? null)}
-              >
-                {subject.name}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleDelete(subject._id ?? "")}
-              >
-                Ištrinti
-              </button>
-            </li>
-          ))}
-        </ul>
+      <h3>Subjects:</h3>
+      <div className="flex flex-row gap-x-4 flex-wrap">
+        {subjects.map((subject) => (
+          <Card
+            key={subject._id}
+            className="card w-96 bg-base-100 card-lg shadow-sm "
+          >
+            <div className="card-body">
+              <h2 className="card-title">
+                {" "}
+                <button
+                  className="btn btn-soft"
+                  type="button"
+                  onClick={() => setSelectedSubjectId(subject._id ?? null)}
+                >
+                  {subject.name}
+                </button>
+              </h2>
+              <div className="justify-end card-actions">
+                <button
+                  className="btn btn-outline btn-error"
+                  type="button"
+                  onClick={() => handleDelete(subject._id ?? "")}
+                >
+                  Ištrinti
+                </button>
+              </div>
+            </div>
+          </Card>
+        ))}
       </div>
     </form>
   );

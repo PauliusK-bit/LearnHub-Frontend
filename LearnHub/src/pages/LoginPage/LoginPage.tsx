@@ -8,9 +8,14 @@ import { useNavigate } from "react-router";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
 
   const navigate = useNavigate();
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const userEmailHandler = (event: ChangeEvent<HTMLInputElement>) =>
     setEmail(event.target.value);
@@ -28,6 +33,7 @@ const LoginPage = () => {
 
       if (token) {
         login(token);
+        console.log(token);
         toast.success("Logged in");
         navigate("/profile");
       }
@@ -40,8 +46,9 @@ const LoginPage = () => {
     <div className="loginForm">
       <h1>Login</h1>
       <form onSubmit={loginHandler}>
-        <div className="form-control">
+        <div className="form-control input input-primary">
           <input
+            placeholder="Enter your email"
             className="max-w-xs"
             type="email"
             id="email"
@@ -49,15 +56,34 @@ const LoginPage = () => {
             onChange={userEmailHandler}
           />
         </div>
-        <div className="form-control">
+        <div className="form-control input input-primary">
           <input
+            placeholder="Enter your password"
             className="max-w-xs"
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             id="password"
             value={password}
             onChange={userPasswordHandler}
           />
+          <button
+            type="button"
+            onClick={togglePassword}
+            style={{
+              position: "absolute",
+              right: "10px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+            }}
+            aria-label={
+              showPassword ? "Slaptažodis matomas" : "Slaptažodis slepiamas"
+            }
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </button>
         </div>
         <button className="loginButton" type="submit">
           Login
