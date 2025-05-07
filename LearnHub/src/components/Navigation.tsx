@@ -8,8 +8,8 @@ const Navigation = () => {
   const { user } = useAuth();
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="navbar-start">
+    <div className="navbar bg-base-100 shadow-sm  ">
+      <div className="flex-none ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             {" "}
@@ -71,9 +71,14 @@ const Navigation = () => {
               </>
             )}
             {user && user.role === ROLES.STUDENT && (
-              <li>
-                <Link to="/subjects">Subjects</Link>
-              </li>
+              <>
+                <li>
+                  <Link to="/subjects">Subjects</Link>
+                </li>
+                <li>
+                  <Link to="/categories">Categories</Link>
+                </li>
+              </>
             )}
             {user && (
               <li>
@@ -145,6 +150,15 @@ const Navigation = () => {
                   <Link to="/videos" className="btn btn-ghost btn-sm">
                     Add Video Lesson
                   </Link>
+                  <Link to="/subjects" className="btn btn-ghost btn-sm">
+                    Subjects
+                  </Link>
+                  <Link to="/categories" className="btn btn-ghost btn-sm">
+                    Categories
+                  </Link>
+                  <Link to="/activities" className="btn btn-ghost btn-sm">
+                    Events
+                  </Link>
                 </>
               )}
               {user.role === ROLES.STUDENT && (
@@ -152,6 +166,7 @@ const Navigation = () => {
                   <Link to="/subjects" className="btn btn-ghost btn-sm">
                     Subjects
                   </Link>
+                  <Link to="/categories">Categories</Link>
                 </>
               )}
               <Link to="/profile" className="btn btn-ghost btn-sm">

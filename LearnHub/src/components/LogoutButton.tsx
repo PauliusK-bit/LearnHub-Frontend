@@ -11,8 +11,8 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  /* position: relative; */
+  /* overflow: hidden; */
   transition-duration: 0.3s;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
   background-color: rgb(255, 65, 65);
@@ -50,7 +50,7 @@ const Sign = styled.div`
 `;
 
 const Text = styled.div`
-  position: absolute;
+  /* position: absolute; */
   right: 0%;
   width: 0%;
   opacity: 0;

@@ -8,7 +8,7 @@ const GroupPage = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const { id } = useParams();
+  const { _id } = useParams();
 
   const { user } = useAuth();
 
@@ -17,7 +17,7 @@ const GroupPage = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const { data } = await api.get(`groups/${id}/students`);
+        const { data } = await api.get(`/groups/${_id}/students`);
         setStudents(data);
       } catch (error) {
         console.log("Something went wrong", error);
@@ -26,7 +26,7 @@ const GroupPage = () => {
       }
     };
     fetchStudents();
-  }, [id]);
+  }, [_id]);
 
   if (!user || !allowedRoles.includes(user.role)) {
     return <p>This page can see only Lecturer and Admin</p>;
@@ -38,7 +38,7 @@ const GroupPage = () => {
 
   return (
     <>
-      <div>Id: {id}</div>
+      <div>Id: {_id}</div>
       <h2>Students:</h2>
       {students.length === 0 ? (
         <p>No students found.</p>

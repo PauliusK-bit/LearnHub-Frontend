@@ -43,7 +43,7 @@ function App() {
               <Route path="groups/:id" element={<GroupPage />} />
               <Route path="students" element={<StudentsPage />} />
               <Route path="lecturers" element={<LecturersPage />} />
-              <Route path="lecturers/:id" element={<LecturerPage />} />
+              <Route path="lecturers/:_id" element={<LecturerPage />} />
               <Route path="admin-dashboard" element={<AdminPage />} />
               <Route
                 path="categories-control"

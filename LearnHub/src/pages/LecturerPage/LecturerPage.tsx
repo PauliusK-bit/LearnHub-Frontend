@@ -9,17 +9,17 @@ const LecturerPage = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [groups, setGroups] = useState<Group[]>([]);
 
-  const { id } = useParams();
+  const { _id } = useParams();
 
   const { user } = useAuth();
 
-  const allowedRoles = ["ADMIN"];
+  const allowedRoles = ["ADMIN", "LECTURER"];
 
   useEffect(() => {
     const fetchLecturersStudents = async () => {
       try {
-        const { data } = await api.get(`/lecturers/${id}/students`);
-        const response = await api.get(`lecturers/${id}/groups`);
+        const { data } = await api.get(`/lecturers/${_id}/students`);
+        const response = await api.get(`lecturers/${_id}/groups`);
         setStudents(data);
         setGroups(response.data);
       } catch (error) {
@@ -29,7 +29,7 @@ const LecturerPage = () => {
       }
     };
     fetchLecturersStudents();
-  }, [id]);
+  }, [_id]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -41,7 +41,7 @@ const LecturerPage = () => {
 
   return (
     <>
-      <div>Lecturers id: {id}</div>
+      <div>Lecturers id: {_id}</div>
       <h2>Students:</h2>
       {students.length === 0 ? (
         <p>No students found.</p>
@@ -62,7 +62,7 @@ const LecturerPage = () => {
         <ul>
           {groups.map((group) => (
             <li key={group._id}>
-              <Link to={`/groups/${id}`}>{group.name}</Link>
+              <Link to={`/groups/${_id}`}>{group.name}</Link>
             </li>
           ))}
         </ul>
