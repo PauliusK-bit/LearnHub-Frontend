@@ -3,6 +3,7 @@ import { Video } from "../../components/types";
 import { useParams } from "react-router";
 import api from "../../api";
 import styled from "styled-components";
+import { useAuth } from "../../components/AuthContext";
 
 const Wrapper = styled.div`
   padding: 30px;
@@ -102,7 +103,11 @@ const VideoPage = () => {
   const [videos, setVideos] = useState<Video[]>([]);
   const [level, setLevel] = useState("all");
 
+  const { user } = useAuth();
+
   const { id } = useParams();
+
+  const allowedRoles = ["ADMIN", "LECTURER", "STUDENT"];
 
   useEffect(() => {
     const fetchSubjectVideos = async () => {
@@ -121,6 +126,10 @@ const VideoPage = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (!user || !allowedRoles.includes(user.role)) {
+    return <p>You don't have access to this page :(</p>;
   }
 
   const filteredVideos =

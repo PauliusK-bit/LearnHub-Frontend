@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Activity } from "./types";
+import { Activity, BaseActivity, ExistingActivity } from "./types";
 import axios from "axios";
 import { API_URL } from "../config/config";
 import styled from "styled-components";
@@ -100,7 +100,7 @@ const ActivityForm: React.FC = () => {
 
     try {
       if (selectedActivityId) {
-        const updatedActivity: Activity = {
+        const updatedActivity: ExistingActivity = {
           _id: selectedActivityId,
           title,
           description,
@@ -117,7 +117,7 @@ const ActivityForm: React.FC = () => {
           )
         );
       } else {
-        const newActivity: Activity = {
+        const newActivity: BaseActivity = {
           title,
           description,
           eventDate,

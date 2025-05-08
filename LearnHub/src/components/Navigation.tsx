@@ -81,23 +81,28 @@ const Navigation = () => {
               </>
             )}
             {user && (
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
+              <>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li>
+                  <Link to="/categories">Categories</Link>
+                </li>
+              </>
             )}
             {user && (
-              <li>
-                <LogoutButton />
-              </li>
+              <>
+                <li>
+                  <LogoutButton />
+                </li>
+              </>
             )}
             {!user && (
               <>
                 <li>
                   <Link to="/">Home Page</Link>
                 </li>
-                <li>
-                  <Link to="/categories">Categories</Link>
-                </li>
+
                 <li>
                   <Link to="/activities">Events</Link>
                 </li>
@@ -161,6 +166,16 @@ const Navigation = () => {
                   </Link>
                 </>
               )}
+              {user.role === ROLES.USER && (
+                <>
+                  <Link to="/categories" className="btn btn-ghost btn-sm">
+                    Categories
+                  </Link>
+                  <Link to="/activities" className="btn btn-ghost btn-sm">
+                    Events
+                  </Link>
+                </>
+              )}
               {user.role === ROLES.STUDENT && (
                 <>
                   <Link to="/subjects" className="btn btn-ghost btn-sm">
@@ -169,18 +184,13 @@ const Navigation = () => {
                   <Link to="/categories">Categories</Link>
                 </>
               )}
-              <Link to="/profile" className="btn btn-ghost btn-sm">
-                Profile
-              </Link>
+
               <LogoutButton />
             </>
           ) : (
             <>
               <Link to="/" className="btn btn-ghost btn-sm">
                 Home Page
-              </Link>
-              <Link to="/categories" className="btn btn-ghost btn-sm">
-                Categories
               </Link>
               <Link to="/activities" className="btn btn-ghost btn-sm">
                 Events

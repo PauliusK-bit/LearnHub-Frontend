@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Student } from "./types";
+import { BaseStudent, Student } from "./types";
 import axios from "axios";
 import { API_URL } from "../config/config";
 import styled from "styled-components";
@@ -98,7 +98,7 @@ const StudentForm: React.FC = () => {
           )
         );
       } else {
-        const newStudent: Student = {
+        const newStudent: BaseStudent = {
           name,
           email,
           password,

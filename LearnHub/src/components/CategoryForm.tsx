@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Category } from "./types";
+import { BaseCategory, Category } from "./types";
 import axios from "axios";
 import { API_URL } from "../config/config";
 import styled from "styled-components";
@@ -80,7 +80,7 @@ const CategoryForm = () => {
           description,
         };
 
-        const { data } = await axios.put(
+        await axios.put(
           `${API_URL}/categories/${selectedCategoryId}`,
           updatedCategory
         );
@@ -90,7 +90,7 @@ const CategoryForm = () => {
           )
         );
       } else {
-        const newCategory: Category = {
+        const newCategory: BaseCategory = {
           name,
           description,
         };

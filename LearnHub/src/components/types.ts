@@ -76,3 +76,32 @@ export interface Group {
   name: string;
   _id: string;
 }
+
+export interface BaseActivity {
+  title: string;
+  description: string;
+  eventDate: string;
+}
+
+export interface BaseStudent {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface ExistingActivity extends BaseActivity {
+  _id: string;
+}
+
+export interface ExistingStudent extends BaseStudent {
+  _id: string;
+}
+
+export interface BaseCategory {
+  name: string;
+  description: string;
+}
+
+export interface ExistingCategory {
+  _id: string;
+}
