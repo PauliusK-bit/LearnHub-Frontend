@@ -105,3 +105,14 @@ export interface BaseCategory {
 export interface ExistingCategory {
   _id: string;
 }
+
+export interface BaseLecturer {
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+}
+
+export interface ExistingLecturer extends BaseLecturer {
+  _id: string;
+}

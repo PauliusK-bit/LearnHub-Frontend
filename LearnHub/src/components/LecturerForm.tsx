@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useLecturers } from "../pages/LecturersPage/LecturersContextProvider";
-import { Lecturer } from "./types";
+import { BaseLecturer, ExistingLecturer } from "./types";
 import styled from "styled-components";
 
 const Form = styled.form`
@@ -153,20 +153,22 @@ const LecturerForm = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    let newLecturerData: Lecturer = {
-      name,
-      surname,
-      email,
-      password,
-    };
-
     if (selectedLecturerId) {
-      newLecturerData = {
-        ...newLecturerData,
+      const updatedLecturerData: ExistingLecturer = {
         _id: selectedLecturerId,
+        name,
+        surname,
+        email,
+        password,
       };
-      await editLecturer(newLecturerData);
+      await editLecturer(updatedLecturerData);
     } else {
+      const newLecturerData: BaseLecturer = {
+        name,
+        surname,
+        email,
+        password,
+      };
       await addLecturer(newLecturerData);
     }
 
@@ -184,69 +186,6 @@ const LecturerForm = () => {
       fetchLecturers();
     }
   };
-
-  // return (
-  //   <form onSubmit={handleSubmit}>
-  //     <div className="form-control">
-  //       <label htmlFor="name">Name:</label>
-  //       <input
-  //         type="text"
-  //         id="name"
-  //         value={name}
-  //         onChange={(e) => setName(e.target.value)}
-  //       />
-  //     </div>
-  //     <div className="form-control">
-  //       <label htmlFor="title">Surname:</label>
-  //       <input
-  //         type="text"
-  //         id="surname"
-  //         value={surname}
-  //         onChange={(e) => setSurname(e.target.value)}
-  //       />
-  //     </div>
-  //     <div className="form-control">
-  //       <label htmlFor="title">Email:</label>
-  //       <input
-  //         type="email"
-  //         id="email"
-  //         value={email}
-  //         onChange={(e) => setEmail(e.target.value)}
-  //       />
-  //     </div>
-  //     <div className="form-control">
-  //       <label htmlFor="title">Password:</label>
-  //       <input
-  //         type="password"
-  //         id="password"
-  //         value={password}
-  //         onChange={(e) => setPassword(e.target.value)}
-  //       />
-  //     </div>
-  //     <button type="submit">
-  //       {selectedLecturerId ? "Atnaujinti" : "Pridėti"}
-  //     </button>
-
-  //     <div>
-  //       <h3>Lecturers:</h3>
-  //       <ul>
-  //         {lecturers.map((lecturer) => (
-  //           <li key={lecturer._id}>
-  //             <button
-  //               type="button"
-  //               onClick={() => setSelectedLecturerId(lecturer._id)}
-  //             >
-  //               {lecturer.name} - {lecturer.surname}
-  //             </button>
-  //             <button type="button" onClick={() => handleDelete(lecturer._id)}>
-  //               Ištrinti
-  //             </button>
-  //           </li>
-  //         ))}
-  //       </ul>
-  //     </div>
-  //   </form>
-  // );
 
   return (
     <Form onSubmit={handleSubmit}>

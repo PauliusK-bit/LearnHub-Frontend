@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useReducer } from "react";
-import { Lecturer } from "../../components/types";
+import { BaseLecturer, Lecturer } from "../../components/types";
 import {
   LecturersActionTypes,
   LecturersInitialState,
@@ -13,7 +13,7 @@ interface LecturersContextType {
   loading: boolean;
   error: string;
   fetchLecturers: () => Promise<void>;
-  addLecturer: (lecturer: Lecturer) => Promise<void>;
+  addLecturer: (lecturer: BaseLecturer) => Promise<void>;
   deleteLecturer: (id: string) => Promise<void>;
   editLecturer: (lecturer: Lecturer) => Promise<void>;
 }
@@ -42,7 +42,7 @@ export const LecturersPageContextProvider: React.FC<{
     }
   };
 
-  const addLecturer = async (newLecturer: Lecturer) => {
+  const addLecturer = async (newLecturer: BaseLecturer) => {
     try {
       dispatch({ type: LecturersActionTypes.FETCH });
       const { data } = await axios.post(`${API_URL}/lecturers`, newLecturer);
