@@ -33,5 +33,5 @@
 1. Atsisiųskite arba klonuokite šį repozitoriją:
 
 ```bash
-git clone {jūsų repo nuoroda}
+git clone {repo nuoroda}
 ```
