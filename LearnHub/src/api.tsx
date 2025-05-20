@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3007/api",
+  baseURL: "https://learnhub-backend-z7vr.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {

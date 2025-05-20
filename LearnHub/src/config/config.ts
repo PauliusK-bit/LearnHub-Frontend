@@ -1,1 +1,1 @@
-export const API_URL = "http://localhost:3007/api";
+export const API_URL = "https://learnhub-backend-z7vr.onrender.com/api";
